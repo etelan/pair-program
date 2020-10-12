@@ -18,20 +18,20 @@ To complete this challenge, you will need to:
  Organise the nouns and verbs into Objects and Messages within the table
  Draw a diagram that shows how your Objects will use Messages to communicate with one another
 
-first_story 
-Nouns 
+first_story
+Nouns
 - person
 - bike
 - docking station
 
 second_story
-Nouns 
+Nouns
 - person
 - bike
 
-first_story 
+first_story
 Verb
-- use 
+- use
 - release
 
 second_story
@@ -41,6 +41,11 @@ Verb
 
 Objects  | Messages
 ------------- | -------------
-User  |
-Customer  | find_by_surname
+Person  |
+Bike  | use
+Docking station  | release
 
+Objects  | Messages
+------------- | -------------
+Person  |
+Bike  | use, see
