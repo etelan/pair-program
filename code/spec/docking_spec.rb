@@ -36,15 +36,12 @@ RSpec.describe DockingStation do
 
     end
 
-    it 'return false if no bikes to give' do
+    it 'raise false if no bikes to give' do
 
       # New objects
       station = DockingStation.new
 
-      expected_value = false
-      actual_value = station.release
-
-      expect(actual_value).to eq expected_value
+      expect{station.release}.to raise_error("Asking for a bike that doesn't exist")
 
     end
   end

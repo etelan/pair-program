@@ -10,8 +10,7 @@ class DockingStation
   def release
     @release_bike = storage.last
     if @storage.empty?
-      puts "no bikes available"
-      return false
+      raise "Asking for a bike that doesn't exist"
     else
       storage.pop
       return @release_bike
@@ -36,20 +35,3 @@ class Bike
     return true
   end
 end
-
-dock = DockingStation.new
-
-fast = Bike.new
-faster = Bike.new
-stop = Bike.new
-
-dock.docking(fast)
-dock.docking(faster)
-dock.docking(stop)
-dock.release()
-dock.release()
-dock.release()
-dock.release()
-dock.release()
-dock.release()
-dock.look()
