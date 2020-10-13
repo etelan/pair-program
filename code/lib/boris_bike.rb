@@ -6,7 +6,7 @@ class DockingStation
   # Initialize our instance variables
   def initialize(storage=[], capacity=1)
     @storage = storage
-    @capacity = capacity
+    @DEFAULT_CAPACITY = capacity
   end
 
   # Release and return the last bike, if there is one
@@ -44,7 +44,7 @@ class DockingStation
   # Refractoring
   private
   def full?
-    return (if storage.length < @capacity then true else false end)
+    return (if storage.length < @DEFAULT_CAPACITY then true else false end)
   end
 
   def empty?
