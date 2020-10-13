@@ -1,6 +1,6 @@
 class DockingStation
 
-  attr_accessor :storage
+  attr_writer :storage
 
   def initialize(storage=[])
     @storage = storage
@@ -9,18 +9,24 @@ class DockingStation
 
   def release
     @release_bike = storage.last
-    storage.pop
-    return @release_bike
+    if @storage.empty?
+      puts "no bikes available"
+      return false
+    else
+      storage.pop
+      return @release_bike
+    end
   end
+
+  def docking(bike)
+    storage.push(bike)
+  end
+
+  attr_reader :storage
 
   def look
     puts "Storage:"
     print storage
-  end
-
-
-  def docking(bike)
-    storage.push(bike)
   end
 
 end
@@ -40,5 +46,10 @@ stop = Bike.new
 dock.docking(fast)
 dock.docking(faster)
 dock.docking(stop)
+dock.release()
+dock.release()
+dock.release()
+dock.release()
+dock.release()
 dock.release()
 dock.look()

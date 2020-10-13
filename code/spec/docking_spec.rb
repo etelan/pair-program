@@ -13,11 +13,11 @@ RSpec.describe DockingStation do
 
       expect(actual_value).to eq expected_value
 
-
     end
   end
 
   describe '#Release' do
+
     it 'release the last bike' do
 
       # New objects
@@ -29,13 +29,22 @@ RSpec.describe DockingStation do
       station.docking(penny_farthing)
       station.docking(road_bike)
 
-
-
       expected_value = station.storage.last
       actual_value = station.release
 
       expect(actual_value).to eq expected_value
 
+    end
+
+    it 'return false if no bikes to give' do
+
+      # New objects
+      station = DockingStation.new
+
+      expected_value = false
+      actual_value = station.release
+
+      expect(actual_value).to eq expected_value
 
     end
   end
