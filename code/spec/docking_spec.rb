@@ -23,7 +23,7 @@ RSpec.describe DockingStation do
       # New objects
       penny_farthing = Bike.new
       road_bike = Bike.new
-      station = DockingStation.new
+      station = DockingStation.new([],2)
 
       # Dock Our Bikes
       station.docking(penny_farthing)
@@ -36,12 +36,21 @@ RSpec.describe DockingStation do
 
     end
 
-    it 'raise false if no bikes to give' do
+    it 'raise no bikes if no bikes to give' do
 
       # New objects
       station = DockingStation.new
 
       expect{station.release}.to raise_error("Asking for a bike that doesn't exist")
+
+    end
+
+    it 'max capacity error' do
+
+      # New objects
+      station = DockingStation.new([],0)
+
+      expect{station.docking(Bike.new)}.to raise_error("no space")
 
     end
   end
