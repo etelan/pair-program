@@ -1,19 +1,22 @@
 class DockingStation
 
+  # Write Only for Storage
   attr_writer :storage
 
+  # Initialize our instance variables
   def initialize(storage=[], capacity=1)
     @storage = storage
     @capacity = capacity
   end
 
-
+  # Release and return the last bike, if there is one
   def release
     @release_bike = storage.last
     raise "Asking for a bike that doesn't exist" if @storage.empty?
     storage.pop; return @release_bike if !(@storage.empty?)
   end
 
+  # Dock a bike into the station
   def docking(bike_collection)
 
     # If it is just a bike, no need to run through an array.
@@ -29,8 +32,10 @@ class DockingStation
 
   end
 
+  # Read Only for Storage
   attr_reader :storage
 
+  # Viewing what is in storage
   def look
     puts "Storage:"
     print storage
@@ -38,7 +43,9 @@ class DockingStation
 
 end
 
+# Class for Bike
 class Bike
+  # Determines if it is working or not
   def working?
     return true
   end
