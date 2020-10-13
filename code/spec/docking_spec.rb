@@ -14,6 +14,28 @@ RSpec.describe DockingStation do
       expect(actual_value).to eq expected_value
 
     end
+
+    it 'max capacity error' do
+
+      # New objects
+      station = DockingStation.new([],0)
+
+      expect{station.docking(Bike.new)}.to raise_error("no space")
+
+    end
+
+    it 'adding with array' do
+
+      station = DockingStation.new([],20)
+      bundle_bikes = [Bike.new, Bike.new]
+      station.docking(bundle_bikes)
+
+      expected_value = bundle_bikes
+      actual_value = station.storage
+      expect(actual_value).to eq expected_value
+
+    end
+
   end
 
   describe '#Release' do
@@ -45,14 +67,9 @@ RSpec.describe DockingStation do
 
     end
 
-    it 'max capacity error' do
 
-      # New objects
-      station = DockingStation.new([],0)
 
-      expect{station.docking(Bike.new)}.to raise_error("no space")
 
-    end
   end
 
 end

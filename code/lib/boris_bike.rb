@@ -14,8 +14,19 @@ class DockingStation
     storage.pop; return @release_bike if !(@storage.empty?)
   end
 
-  def docking(bike)
-    if storage.length < @capacity then storage.push(bike) else raise 'no space' end
+  def docking(bike_collection)
+
+    # If it is just a bike, no need to run through an array.
+    if bike_collection.is_a?(Bike)
+      if storage.length < @capacity then storage.push(bike_collection) else raise 'no space' end
+
+    # If array, loop through it and add
+    elsif bike_collection.is_a?(Array)
+      bike_collection.each do |bike|
+        if storage.length < @capacity then storage.push(bike) else raise 'no space' end
+      end
+    end
+
   end
 
   attr_reader :storage
