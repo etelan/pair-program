@@ -1,9 +1,9 @@
 class Food
 
-  attr_reader :protein
+  attr_accessor :protein
 
-  def initialize(protein)
-    @protein = protein
+  def initialize()
+    @protein = 0
   end
 
 
@@ -18,7 +18,7 @@ class Food
   # end
 
 end
-bacon = Food.new(18)
+bacon = Food.new()
 
 bacon.protein = 20
 puts bacon.protein
