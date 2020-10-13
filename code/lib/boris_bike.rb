@@ -12,8 +12,8 @@ class DockingStation
   # Release and return the last bike, if there is one
   def release
     @release_bike = storage.last
-    raise "Asking for a bike that doesn't exist" if @storage.empty?
-    storage.pop; return @release_bike if !(@storage.empty?)
+    raise "Asking for a bike that doesn't exist" if empty?
+    storage.pop; return @release_bike if !empty?
   end
 
   # Dock a bike into the station
@@ -21,12 +21,12 @@ class DockingStation
 
     # If it is just a bike, no need to run through an array.
     if bike_collection.is_a?(Bike)
-      if storage.length < @capacity then storage.push(bike_collection) else raise 'no space' end
+      if full? then storage.push(bike_collection) else raise 'no space' end
 
     # If array, loop through it and add
     elsif bike_collection.is_a?(Array)
       bike_collection.each do |bike|
-        if storage.length < @capacity then storage.push(bike) else raise 'no space' end
+        if full? then storage.push(bike) else raise 'no space' end
       end
     end
 
@@ -40,6 +40,18 @@ class DockingStation
     puts "Storage:"
     print storage
   end
+
+  # Refractoring
+  private
+  def full?
+    return (if storage.length < @capacity then true else false end)
+  end
+
+  def empty?
+    return (if storage.length == 0 then true else false end)
+  end
+
+
 
 end
 
