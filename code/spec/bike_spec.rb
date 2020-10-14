@@ -1,15 +1,14 @@
 require 'boris_bike'
 
-# RSpec.describe Bike do
-#   describe '#Working' do
-#     it "returns true" do
-#       docking = DockingStation.new
-#       speedy_boy = Bike.new
-#       bike = docking.release()
-#       actual_value = bike.working?
-#       expected_value = true
-#
-#       expect(actual_value).to eq expected_value
-#     end
-#   end
-# end
+RSpec.describe Bike do
+  describe '#Working' do
+
+    it "read working" do
+      # expect(actual_value).to eq expected_value
+    end
+
+    it "set working" do
+      # expect(actual_value).to eq expected_value
+    end
+  end
+end

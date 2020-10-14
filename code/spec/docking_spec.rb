@@ -2,11 +2,11 @@ require 'boris_bike'
 
 RSpec.describe DockingStation do
   describe '#Docking' do
-    it 'give it a bike, check if it has the bike' do
+    it 'give it a working bike' do
 
       penny_farthing = Bike.new
       station = DockingStation.new
-      station.docking(penny_farthing)
+      station.docking(penny_farthing, true)
 
       expected_value = penny_farthing
       actual_value = station.storage[0]
@@ -20,7 +20,7 @@ RSpec.describe DockingStation do
       # New objects
       station = DockingStation.new([],0)
 
-      expect{station.docking(Bike.new)}.to raise_error("no space")
+      expect{station.docking(Bike.new,true)}.to raise_error("no space")
 
     end
 
@@ -28,10 +28,23 @@ RSpec.describe DockingStation do
 
       station = DockingStation.new([],20)
       bundle_bikes = [Bike.new, Bike.new]
-      station.docking(bundle_bikes)
+      station.docking(bundle_bikes,true)
 
       expected_value = bundle_bikes
       actual_value = station.storage
+      expect(actual_value).to eq expected_value
+
+    end
+
+    it 'add broken bike' do
+
+      penny_farthing = Bike.new
+      station = DockingStation.new
+      station.docking(penny_farthing, false)
+
+      expected_value = penny_farthing
+      actual_value = station.broken[0]
+
       expect(actual_value).to eq expected_value
 
     end
@@ -48,8 +61,8 @@ RSpec.describe DockingStation do
       station = DockingStation.new([],2)
 
       # Dock Our Bikes
-      station.docking(penny_farthing)
-      station.docking(road_bike)
+      station.docking(penny_farthing, true)
+      station.docking(road_bike, true)
 
       expected_value = station.storage.last
       actual_value = station.release
