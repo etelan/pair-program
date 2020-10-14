@@ -2,6 +2,9 @@ require 'boris_bike'
 
 RSpec.describe DockingStation do
   describe '#Docking' do
+
+
+
     it 'give it a working bike' do
 
       penny_farthing = Bike.new
@@ -80,9 +83,19 @@ RSpec.describe DockingStation do
 
     end
 
+  end
+
+  describe '#give_broken' do
 
 
-
+    it "gives van broken bike array" do
+      station = DockingStation.new
+      fast_bike = Bike.new
+      station.docking(fast_bike,false)
+      expected_value = [fast_bike]
+      actual_value = station.give_broken
+      expect(actual_value).to eq expected_value
+    end
   end
 
 end
