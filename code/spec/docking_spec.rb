@@ -1,9 +1,8 @@
 require 'boris_bike'
 
 RSpec.describe DockingStation do
+
   describe '#Docking' do
-
-
 
     it 'give it a working bike' do
 
@@ -21,7 +20,7 @@ RSpec.describe DockingStation do
     it 'max capacity error' do
 
       # New objects
-      station = DockingStation.new([],0)
+      station = DockingStation.new(0)
 
       expect{station.docking(Bike.new,true)}.to raise_error("no space")
 
@@ -29,7 +28,7 @@ RSpec.describe DockingStation do
 
     it 'adding with array' do
 
-      station = DockingStation.new([],20)
+      station = DockingStation.new(20)
       bundle_bikes = [Bike.new, Bike.new]
       station.docking(bundle_bikes,true)
 
@@ -61,7 +60,7 @@ RSpec.describe DockingStation do
       # New objects
       penny_farthing = Bike.new
       road_bike = Bike.new
-      station = DockingStation.new([],2)
+      station = DockingStation.new(2)
 
       # Dock Our Bikes
       station.docking(penny_farthing, true)
@@ -85,14 +84,18 @@ RSpec.describe DockingStation do
 
   end
 
-  describe '#give_broken' do
+  describe "#give_broken" do
+    it "returns the list of broken bikes" do
+      # New objects
+      penny_farthing = Bike.new
+      road_bike = Bike.new
+      station = DockingStation.new(2)
 
+      # Dock Our Bikes
+      station.docking(penny_farthing, false)
+      station.docking(road_bike, false)
 
-    it "gives van broken bike array" do
-      station = DockingStation.new
-      fast_bike = Bike.new
-      station.docking(fast_bike,false)
-      expected_value = [fast_bike]
+      expected_value = station.broken
       actual_value = station.give_broken
       expect(actual_value).to eq expected_value
     end

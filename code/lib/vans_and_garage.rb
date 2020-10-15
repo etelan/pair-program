@@ -1,12 +1,38 @@
-class Van
-  attr_accessor :storage
+require_relative "boris_bike"
 
-  def initialize(storage = [])
-    @storage = storage
+class Van
+  attr_accessor :bikes
+
+  def initialize(bikes)
+    @bikes = bikes
   end
 
-  def pick_up(station)
-    @storage = station.broken
-    station.broken = []
+  def drop_off
+    @delivery = bikes
+    @bikes = []
+    return @delivery
+  end
+end
+
+class Garage
+  attr_accessor :broken, :working
+
+  def initialize(delivery)
+    @broken = delivery
+    @working = []
+  end
+
+  def fix()
+    @broken.each do |bike|
+      bike.working = true
+      @working.push(bike)
+    end
+    @broken = []
+  end
+
+  def give_working
+    @transit = @working
+    @working = []
+    return @transit
   end
 end
